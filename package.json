@@ -1,0 +1,35 @@
+{
+  "name": "openai-load-balancer",
+  "version": "1.0.0",
+  "description": "A load balancing wrapper for OpenAI API calls across multiple endpoints.",
+  "main": "index.js",
+  "type": "module",
+  "exports": {
+    "import": "./src/index.js",
+    "require": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickpotafiy/openai-load-balancer.git"
+  },
+  "keywords": [
+    "openai",
+    "api",
+    "load-balancer",
+    "nodejs"
+  ],
+  "author": "Nick Potafiy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickpotafiy/openai-load-balancer/issues"
+  },
+  "homepage": "https://github.com/nickpotafiy/openai-load-balancer#readme",
+  "dependencies": {
+    "openai": "^4.56.0",
+    "openai-load-balancer": "file:."
+  }
+}
