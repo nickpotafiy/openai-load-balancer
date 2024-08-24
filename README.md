@@ -41,3 +41,17 @@ To access the OpenAI client directly, use `nextClient` to do that:
 const nextClient = openai.nextClient();
 ```
 Each time `nextClient` is called, the next client in the pool is retrieved.
+
+## Auto Model Detection
+
+When calling methods that require the `model` parameter (ie. `completions`, `chat,` `embeddings`, etc), you can optionally set model to `auto` to allow the load balancer to automatically select the first available model and fill that parameter for you. This is especially helpful in local setups where there's only 1 model being typically hosted on a given host/port anyway.
+
+Example of using auto model which picks the first available model.
+
+```javascript
+const embeddings = await openai.embeddings.create({
+  model: "auto",
+  input: ["My Text"],
+  encoding_format: "float"
+});
+```

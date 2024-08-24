@@ -15,7 +15,7 @@ class BalancerClient {
 }
 
 class UniversalProxy {
-    
+
     constructor(target, client = null) {
         this.target = target;
         this.client = client;
@@ -45,6 +45,9 @@ class UniversalProxy {
                                     const models = await this.client.openai.models.list();
                                     const modelId = models && models.data && Array.isArray(models.data) && models.data[0].id || null;
                                     if (modelId) {
+                                        if (models.data.length > 1) {
+                                            throw new Error("Multiple models found, specify the model manually");
+                                        }
                                         this.client.model = modelId;
                                     } else {
                                         throw new Error("Failed fetching model list, specify the model manually");
@@ -98,7 +101,7 @@ export default class OpenAIBalancer {
             const client = new BalancerClient({ baseURL, apiKey, model });
             this.clients.push(client);
         }
-        this.currentClientIndex = 0;
+        this.currentClientIndex = -1;
 
         this.nextClient = () => {
             if (this.balancingStrategy === 'round-robin') {
@@ -112,5 +115,5 @@ export default class OpenAIBalancer {
         }
         return new UniversalProxy(this);
     }
-    
+
 }
