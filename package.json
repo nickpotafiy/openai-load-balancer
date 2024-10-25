@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/nickpotafiy/openai-load-balancer#readme",
   "dependencies": {
-    "openai": "^4.56.0"
+    "openai": "^4.56.0",
+    "openai-load-balancer": "https://github.com/nickpotafiy/openai-load-balancer.git"
   }
 }
