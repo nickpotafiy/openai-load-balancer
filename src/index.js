@@ -58,7 +58,7 @@ class UniversalProxy {
                             }
                         }
                         if (this.client && this.client.model) {
-                            if(args[0] && typeof args[0] === 'object') {
+                            if(args && args[0] && typeof args[0] === 'object') {
                                 args[0].model = this.client.model;
                             } else {
                                 console.log("args[0] not defined", args, "property", property);
