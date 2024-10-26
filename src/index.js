@@ -38,9 +38,9 @@ class UniversalProxy {
                 // Handling function calls
                 if (typeof prop === 'function') {
                     return async (...args) => {
-                        if (args && args.length > 0 && typeof args[0] === 'object' && args[0].model === 'auto') {
+                        if (args && args.length > 0 && typeof args[0] === 'object') {
                             // If the model is set to 'auto', try picking the first model from the list
-                            if (this.client && !this.client.model) {
+                            if (args[0].model === 'auto' && this.client && !this.client.model) {
                                 try {
                                     const models = await this.client.openai.models.list();
                                     const modelId = models && models.data && Array.isArray(models.data) && models.data[0].id || null;
@@ -56,12 +56,8 @@ class UniversalProxy {
                                     throw e;
                                 }
                             }
-                        }
-                        if (this.client && this.client.model) {
-                            if(args && args[0] && typeof args[0] === 'object') {
+                            if (this.client.model) {
                                 args[0].model = this.client.model;
-                            } else {
-                                console.log("args[0] not defined", args, "property", property);
                             }
                         }
                         return prop.apply(proxy.target, args);
