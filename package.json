@@ -1,6 +1,6 @@
 {
   "name": "openai-load-balancer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A load balancing wrapper for OpenAI API calls across multiple endpoints.",
   "main": "index.js",
   "type": "module",
