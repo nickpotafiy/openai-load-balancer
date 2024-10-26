@@ -38,9 +38,10 @@ class UniversalProxy {
                 // Handling function calls
                 if (typeof prop === 'function') {
                     return async (...args) => {
-                        if (args && args.length > 0 && typeof args[0] === 'object') {
-                            // If the model is set to 'auto', try picking the first model from the list
-                            if (args[0].model === 'auto' && this.client && !this.client.model) {
+
+                        //  Resolve model if set to 'auto'
+                        if (args && args.length > 0 && typeof args[0] === 'object' && args[0].model === 'auto') {
+                            if (this.client && !this.client.model) {
                                 try {
                                     const models = await this.client.openai.models.list();
                                     const modelId = models && models.data && Array.isArray(models.data) && models.data[0].id || null;
@@ -48,6 +49,7 @@ class UniversalProxy {
                                         if (models.data.length > 1) {
                                             throw new Error("Multiple models found, specify the model manually");
                                         }
+                                        // USe the first model found
                                         this.client.model = modelId;
                                     } else {
                                         throw new Error("Failed fetching model list, specify the model manually");
@@ -57,9 +59,11 @@ class UniversalProxy {
                                 }
                             }
                             if (this.client.model) {
+                                // replace 'auto' with the resolved model
                                 args[0].model = this.client.model;
                             }
                         }
+
                         return prop.apply(proxy.target, args);
                     };
                 }
