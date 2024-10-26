@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nickpotafiy/openai-load-balancer.git"
+    "url": "git+https://github.com/nickpotafiy/openai-load-balancer.git#main"
   },
   "keywords": [
     "openai",
@@ -29,7 +29,6 @@
   },
   "homepage": "https://github.com/nickpotafiy/openai-load-balancer#readme",
   "dependencies": {
-    "openai": "^4.56.0",
-    "openai-load-balancer": "https://github.com/nickpotafiy/openai-load-balancer.git"
+    "openai": "^4.56.0"
   }
 }
