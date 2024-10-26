@@ -49,7 +49,7 @@ class UniversalProxy {
                                         if (models.data.length > 1) {
                                             throw new Error("Multiple models found, specify the model manually");
                                         }
-                                        // USe the first model found
+                                        // Use the first model found
                                         this.client.model = modelId;
                                     } else {
                                         throw new Error("Failed fetching model list, specify the model manually");
@@ -59,7 +59,7 @@ class UniversalProxy {
                                 }
                             }
                             if (this.client.model) {
-                                // replace 'auto' with the resolved model
+                                // Replace 'auto' with the resolved model
                                 args[0].model = this.client.model;
                             }
                         }
